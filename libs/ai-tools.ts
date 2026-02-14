@@ -27,13 +27,11 @@ export async function getBalance(address: string, chain: string, token?: string)
 }
 
 export async function getTokens(address: string, chain?: string) {
-  // If chain not specified, try to get from all supported chains
   // Simplified: just EVM for now
   return getEvmTokens(address)
 }
 
 export async function swap(params: any, address: string) {
-  // Use LI.FI for swap as well (same-chain swaps are also possible)
   const quote = await getLifiQuote({ ...params, fromAddress: address, sameChain: true })
   if (!quote) return 'No swap route found.'
   const quoteId = storeQuote(quote)
@@ -54,7 +52,6 @@ export async function bridge(params: any, address: string) {
 }
 
 export async function revokeApproval(params: any, address: string) {
-  // Implementation depends on chain
   return 'Revoke functionality not yet implemented.'
 }
 
